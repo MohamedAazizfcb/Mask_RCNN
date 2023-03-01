@@ -6,7 +6,6 @@ Copyright (c) 2017 Matterport, Inc.
 Licensed under the MIT License (see LICENSE for details)
 Written by Waleed Abdulla
 """
-
 import sys
 import os
 import logging
@@ -22,6 +21,16 @@ import urllib.request
 import shutil
 import warnings
 from distutils.version import LooseVersion
+from pandas import DataFrame
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+from matplotlib.collections import QuadMesh
+import seaborn as sn
+from sklearn.metrics import confusion_matrix
+from pandas import DataFrame
+from string import ascii_uppercase
+
 
 # URL from which to download the latest COCO trained weights
 COCO_MODEL_URL = "https://github.com/matterport/Mask_RCNN/releases/download/v2.0/mask_rcnn_coco.h5"
