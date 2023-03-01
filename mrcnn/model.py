@@ -1214,7 +1214,7 @@ def mrcnn_mask_loss_graph(target_masks, target_class_ids, pred_masks):
 #  Data Generator
 ############################################################
 
-def load_image_gt(dataset, config, image_id, augmentation=None):
+def load_image_gt(dataset, config, image_id, augmentation=None, use_mini_mask=False):
     """Load and return ground truth data for an image (image, mask, bounding boxes).
 
     augmentation: Optional. An imgaug (https://github.com/aleju/imgaug) augmentation.
@@ -1292,6 +1292,8 @@ def load_image_gt(dataset, config, image_id, augmentation=None):
 
     # Resize masks to smaller size to reduce memory usage
     if config.USE_MINI_MASK:
+        mask = utils.minimize_mask(bbox, mask, config.MINI_MASK_SHAPE)
+    if use_mini_mask:
         mask = utils.minimize_mask(bbox, mask, config.MINI_MASK_SHAPE)
 
     # Image meta data
